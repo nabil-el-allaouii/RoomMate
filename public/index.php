@@ -26,6 +26,12 @@ Route::get('/login', [AuthController::class, 'showleLogin']);
 Route::post('/login', [AuthController::class, 'handleLogin']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
+
+
+
+Route::get('/recherche', [HomeController::class, 'showRecherche']);
+
+
 // admin routers
 
 Route::get('/admin', [AdminController::class, 'index']);
