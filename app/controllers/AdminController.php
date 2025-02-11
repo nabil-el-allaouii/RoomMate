@@ -4,10 +4,7 @@ require_once (__DIR__.'/../models/User.php');
 class AdminController extends BaseController {
     private $UserModel ;
     public function __construct(){
-
         $this->UserModel = new User();
-  
-        
      }
 
    public function index() {

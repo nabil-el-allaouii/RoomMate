@@ -17,6 +17,9 @@ class HomeController extends BaseController {
       $this->render('/recherche');
      }
 
- 
+   public function showProfile() {
+      
+      $this->render('/profil');
+     }
 
 }
