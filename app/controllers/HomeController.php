@@ -12,6 +12,11 @@ class HomeController extends BaseController {
     $this->renderDashboard('admin/index');
    }
 
+   public function showRecherche() {
+      
+      $this->render('/recherche');
+     }
+
  
 
 }
