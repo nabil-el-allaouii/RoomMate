@@ -41,7 +41,7 @@
 
             <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Login</button>
 
-            <p class="text-center text-gray-600 mt-4">Not Registered Yet? <a href="#" class="text-blue-600">Create an account</a></p>
+            <p class="text-center text-gray-600 mt-4">Not Registered Yet? <a href="/register" class="text-blue-600">Create an account</a></p>
         </div>
     </div>
 </body>

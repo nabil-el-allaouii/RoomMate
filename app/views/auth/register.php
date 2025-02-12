@@ -6,7 +6,7 @@
     <title>Roomate.ma - Sign Up</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen flex">
+<body class="h-screen flex p-0 m-0">
     <div class="w-1/2 flex justify-center items-center bg-white">
         <div class="w-full max-w-md">
             <h2 class="text-3xl font-bold mb-8">Roomate.ma</h2>
@@ -38,7 +38,7 @@
 
             <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Create</button>
 
-            <p class="text-center text-gray-600 mt-4">Already have an account? <a href="login.html" class="text-blue-600">Login</a></p>
+            <p class="text-center text-gray-600 mt-4">Already have an account? <a href="/login" class="text-blue-600">Login</a></p>
         </div>
     </div>
     <div class="w-1/2 flex min-h-screen  items-center">
