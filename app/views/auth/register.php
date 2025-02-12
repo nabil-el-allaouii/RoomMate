@@ -6,7 +6,7 @@
     <title>Roomate.ma - Sign Up</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen flex">
+<body class="h-screen flex p-0 m-0">
     <div class="w-1/2 flex justify-center items-center bg-white">
         <div class="w-full max-w-md">
             <h2 class="text-3xl font-bold mb-8">Roomate.ma</h2>
