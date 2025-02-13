@@ -1,10 +1,13 @@
 <?php 
 require_once(__DIR__.'/../config/db.php');
-class User extends Db {
+class User  {
+
+    private $conn;
 
 public function __construct()
 {
-    parent::__construct();
+    $instance = Database::getinstance();
+    $this->conn = $instance->getconn();
 }
 
 public function register($user) {

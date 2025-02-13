@@ -8,7 +8,7 @@ class Database
 
     private function __construct()
     {
-        $dsn = "mysql:host=localhost;dbname=youdemy";
+        $dsn = "mysql:host=localhost;dbname=roommate";
         $user = "root";
         $pass = "";
 
@@ -25,7 +25,7 @@ class Database
     {
 
         if (self::$instance === NULL) {
-            return new Database();
+            self::$instance = new Database();
         }
         return self::$instance;
     }
