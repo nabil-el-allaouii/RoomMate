@@ -9,6 +9,7 @@ require_once '../core/Route.php';
 require_once '../app/controllers/HomeController.php';
 require_once '../app/controllers/AuthController.php';
 require_once '../app/controllers/AdminController.php';
+require_once '../app/controllers/AnnonceController.php';
 require_once '../app/config/db.php';
 
 
@@ -29,8 +30,17 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 
 
+Route::get('/addAnnonce', [HomeController::class, 'showAddAnnonce']);
 
-Route::get('/recherche', [HomeController::class, 'showRecherche']);
+Route::get('/annonces', [HomeController::class, 'showAddAnnonce']);
+Route::post('/annonces', [AnnonceController::class, 'addAnnonce']);
+
+
+
+Route::get('/recherche', [AnnonceController::class, 'showAnnonces']); 
+Route::get('/mesannonces', [AnnonceController::class, 'showMyAnnonces']); 
+Route::post('/deleteAnnonce', [AnnonceController::class, 'deleteAnnonce']); 
+
 
 
 // admin routers
