@@ -1,19 +1,37 @@
-<?php 
+<?php
 
-class Db {
+class Database
+{
 
-    protected $conn ;
+    private static $instance = NULL;
+    private $pdo;
 
-    public function __construct()
+    private function __construct()
     {
+        $dsn = "mysql:host=localhost;dbname=youdemy";
+        $user = "root";
+        $pass = "";
+
         try {
-            $this->conn = new PDO("mysql:host=localhost;dbname=roommate", "root", "");
-            // set the PDO error mode to exception
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          //   echo "Connected successfully";
-          } catch(PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-          }
+
+            $this->pdo = new PDO($dsn, $user, $pass);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Error connecting : " . $e->getMessage());
+        }
     }
 
+    public static function getinstance()
+    {
+
+        if (self::$instance === NULL) {
+            return new Database();
+        }
+        return self::$instance;
+    }
+
+    public function getconn()
+    {
+        return $this->pdo;
+    }
 }
