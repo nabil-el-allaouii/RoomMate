@@ -43,13 +43,13 @@
                         class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
                         <a href="profile.php"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                        <a href="my-offers.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My
+                        <a href="/my-offers" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My
                             Offers</a>
-                        <a href="my-demands.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My
+                        <a href="/my-demands" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My
                             Demands</a>
                         <a href="messages.php"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Messages</a>
-                        <a href="logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign
+                        <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign
                             Out</a>
                     </div>
                 </div>
