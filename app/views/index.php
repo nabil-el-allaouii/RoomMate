@@ -245,7 +245,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Safi -->
                 <div class="city-card relative rounded-xl overflow-hidden group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1590589334390-465e8a90050c?ixlib=rb-4.0.3" alt="Safi"
+                    <img src="https://i.pinimg.com/736x/69/80/d5/6980d540b9ee6f6954047b5ef366d22f.jpg" alt="Safi"
                         class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white z-10">
                         <h3 class="text-3xl font-bold mb-2">SAFI</h3>
@@ -255,7 +255,7 @@
 
                 <!-- Nador -->
                 <div class="city-card relative rounded-xl overflow-hidden group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1590589334390-465e8a90050c?ixlib=rb-4.0.3" alt="Nador"
+                    <img src="https://bmmee2024.sciencesconf.org/data/pages/Nador_City_The_Gateway_to_the_Rif_of_Morocco.jpg" alt="Nador"
                         class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white z-10">
                         <h3 class="text-3xl font-bold mb-2">NADOR</h3>
@@ -265,7 +265,7 @@
 
                 <!-- Youssoufia -->
                 <div class="city-card relative rounded-xl overflow-hidden group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1590589334390-465e8a90050c?ixlib=rb-4.0.3"
+                    <img src="https://steemitimages.com/DQmZEpaz7VFjPK6Z9gCqVU2hPX1CyLXAtSK8auETjymnrh5/image.png"
                         alt="Youssoufia"
                         class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
                     <div class="absolute inset-0 flex flex-col justify-center items-center text-white z-10">
