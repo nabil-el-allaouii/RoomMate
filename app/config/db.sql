@@ -76,6 +76,7 @@ CREATE TABLE reports (
     user_id INT NOT NULL,
     annonce_id INT NOT NULL,
     type ENUM('scam', 'spam', 'violence', 'drugs', 'other') NOT NULL,
+    status ENUM('pending', 'resolved') NOT NULL DEFAULT 'pending',
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
