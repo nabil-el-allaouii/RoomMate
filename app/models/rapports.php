@@ -3,7 +3,6 @@ require_once(__DIR__.'/../config/db.php');
 
 class Rapports {
     private $conn;
-    private $categories ;
 
     public function __construct()
     {
@@ -17,6 +16,20 @@ class Rapports {
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function confirmRapport($id)
+    {
+        $query = "UPDATE reports SET status = 'confirmed' WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$id]);
+    }
+    
+    public function ajouterRapport($data)
+    {
+        $query = "INSERT INTO reports (user_id, description, status) VALUES (?, ?, ?)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute($data);
     }
 }
 
