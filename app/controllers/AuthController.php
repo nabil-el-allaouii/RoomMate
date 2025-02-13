@@ -53,7 +53,7 @@ class AuthController extends BaseController
                     $_SESSION['username'] = $user['nom_utilisateur'];
                     $_SESSION['role'] = $user['role'];
                     $_SESSION['status'] = $user["status"];
-                } 
+                }
             }
         }
     }
