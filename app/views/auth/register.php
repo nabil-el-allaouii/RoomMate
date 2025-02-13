@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roomate.ma - Sign Up</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="h-screen flex p-0 m-0">
     <div class="w-1/2 flex justify-center items-center bg-white">
         <div class="w-full max-w-md">
@@ -19,24 +21,23 @@
             </button>
 
             <div class="text-center text-gray-500 mb-4">or Register with Email</div>
-            <div class="m-2">
-                <label for="" class="text-gray-500">Username</label>
-                <input type="email" placeholder="your username" class="w-full px-4 py-2 mb-2 border rounded">
-               </div>
-               <div class="m-2">
-                <label for="" class="text-gray-500">Email</label>
-                <input type="password" placeholder="mail@abc" class="w-full px-4 py-2 mb-2 border rounded">
-                
-               </div>
-               <div class="m-2">
-                <label for="" class="text-gray-500">Password</label>
-            <input type="password" placeholder="*********" class="w-full px-4 py-2 mb-2 border rounded">
 
-               </div>
-            
-            
+            <form action="/register" method="POST">
+                <div class="m-2">
+                    <label for="username" class="text-gray-500">Username</label>
+                    <input id="username" name="username" type="text" placeholder="your username" class="w-full px-4 py-2 mb-2 border rounded" required>
+                </div>
+                <div class="m-2">
+                    <label for="email" class="text-gray-500">Email</label>
+                    <input id="email" name="email" type="email" placeholder="mail@abc" class="w-full px-4 py-2 mb-2 border rounded" required>
+                </div>
+                <div class="m-2">
+                    <label for="password" class="text-gray-500">Password</label>
+                    <input id="password" name="password" type="password" placeholder="*********" class="w-full px-4 py-2 mb-2 border rounded" required>
+                </div>
 
-            <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Create</button>
+                <button name="signup" type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Create</button>
+            </form>
 
             <p class="text-center text-gray-600 mt-4">Already have an account? <a href="/login" class="text-blue-600">Login</a></p>
         </div>
@@ -45,4 +46,5 @@
         <img src="/images/Mask group (1).svg" alt="Illustration" class="w-full h-full object-cover overflow-hidden">
     </div>
 </body>
+
 </html>
