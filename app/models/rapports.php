@@ -24,6 +24,7 @@ class Rapports {
         $stmt = $this->conn->prepare($query);
         $stmt->execute([$id]);
     }
+    
     public function ajouterRapport($data)
     {
         $query = "INSERT INTO reports (user_id, description, status) VALUES (?, ?, ?)";
