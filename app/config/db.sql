@@ -6,7 +6,7 @@ CREATE TABLE users (
     name VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    role ENUM('user', 'admin') NOT NULL,
+    role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
     status ENUM('active', 'banned', 'pending') NOT NULL DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -76,6 +76,7 @@ CREATE TABLE reports (
     user_id INT NOT NULL,
     annonce_id INT NOT NULL,
     type ENUM('scam', 'spam', 'violence', 'drugs', 'other') NOT NULL,
+    status ENUM('pending', 'resolved') NOT NULL DEFAULT 'pending',
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,

@@ -22,4 +22,8 @@ class HomeController extends BaseController {
       $this->render('/profil');
      }
 
+     public function ShowHome(){
+         $this->render('/index');
+     }
+
 }

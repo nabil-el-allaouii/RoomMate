@@ -36,7 +36,7 @@
     <!-- Main Content -->
     <main class="max-w-2xl mx-auto py-12 px-4">
         <h1 class="text-3xl font-semibold text-center mb-2">Add a new listing</h1>
-        <p class="text-center text-gray-500 mb-8">you are steps away from finding a new home 😊</p>
+        <p class="text-center text-gray-500 mb-8">you are steps away from finding a new roommate</p>
 
         <form action="/annonces" id="listingForm" class="space-y-6" method="POST" enctype="multipart/form-data">
             <!-- Type Selection -->
@@ -60,8 +60,10 @@
             <input type="hidden" name="type" id="type" value="">
 
 
-            <!-- Form Fields -->
+            <!-- Common Fields for Both Types -->
             <div class="space-y-4">
+                <input type="hidden" name="type" id="annonceType" value="demand">
+                
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Title *</label>
                     <input type="text" name="title" required
@@ -110,6 +112,7 @@
                             </select>
                         </div>
                     </div>
+                </div>
 
 
                 <!-- Offer-specific fields -->
@@ -131,6 +134,39 @@
                                 <p class="text-gray-400 text-sm">PNG, JPG up to 10MB</p>
                             </div>
                             <div id="fileList" class="mt-4 text-left"></div>
+                <div class="relative">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Preferences *</label>
+                    <button type="button" id="preferencesDropdown" 
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent bg-white text-left flex justify-between items-center">
+                        <span id="selectedPreferences" class="text-gray-500">Select preferences</span>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    
+                    <div id="preferencesMenu" class="hidden absolute z-10 mt-1 w-full bg-white border rounded-lg shadow-lg">
+                        <div class="p-3 space-y-2 max-h-60 overflow-y-auto">
+                            <!-- <div class="font-medium text-gray-700 border-b pb-2 mb-2">Lifestyle</div> -->
+                            <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="checkbox" name="preferences[]" value="no_smoking" class="rounded text-[#6366F1] focus:ring-[#6366F1]">
+                                <span class="text-gray-700">No Smoking</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="checkbox" name="preferences[]" value="no_pets" class="rounded text-[#6366F1] focus:ring-[#6366F1]">
+                                <span class="text-gray-700">No Pets</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="checkbox" name="preferences[]" value="quiet" class="rounded text-[#6366F1] focus:ring-[#6366F1]">
+                                <span class="text-gray-700">Quiet Environment</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="checkbox" name="preferences[]" value="quiet" class="rounded text-[#6366F1] focus:ring-[#6366F1]">
+                                <span class="text-gray-700">No Party</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="checkbox" name="preferences[]" value="quiet" class="rounded text-[#6366F1] focus:ring-[#6366F1]">
+                                <span class="text-gray-700">No Guest</span>
+                            </label>
                         </div>
                     </div>
                 </div>
