@@ -38,70 +38,32 @@
         <h1 class="text-3xl font-semibold text-center mb-2">Add a new listing</h1>
         <p class="text-center text-gray-500 mb-8">you are steps away from finding a new roommate</p>
 
-        <form action="/annonces" id="listingForm" class="space-y-6" method="POST" enctype="multipart/form-data">
-            <!-- Type Selection -->
-            <div class="flex gap-4 justify-center">
-                <button type="button" id="demandBtn"
-                    class="px-6 py-2 rounded-lg flex items-center gap-2 border transition-colors" data-active="false">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    Demand
-                </button>
-                <button type="button" id="offerBtn"
-                    class="px-6 py-2 rounded-lg flex items-center gap-2 border transition-colors" data-active="false">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                    </svg>
-                    Offer
-                </button>
-            </div>
-            <input type="hidden" name="type" id="type" value="">
+        <form action="/details" id="listingForm" class="space-y-6" method="POST" enctype="multipart/form-data">
 
-
-            <!-- Common Fields for Both Types -->
             <div class="space-y-4">
-                <!-- <input type="hidden" name="type" id="annonceType" value="demand"> -->
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Title *</label>
-                    <input type="text" name="title" required
-                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
-                        placeholder="Enter listing title">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Description *</label>
-                    <textarea name="description" required
+            <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">BIO *</label>
+                    <textarea name="bio" required
                         class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
                         rows="4" placeholder="Write a detailed description about your listing"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">City *</label>
-                    <select name="city" required
-                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
-                        <option value="">Choose a city</option>
-                        <option value="Nador">Nador</option>
-                        <option value="Safi">Safi</option>
-                        <option value="Youssoufia">Youssoufia</option>
-                    </select>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Current City * </label>
+                    <input type="text" name="current_city"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
+                        placeholder="Enter your address">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Address (neighborhood)</label>
-                    <input type="text" name="address"
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Origin City * </label>
+                    <input type="text" name="origin_city"
                         class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
                         placeholder="Enter your address">
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Places *</label>
-                        <input type="number" name="capacity"
-                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
-                            placeholder="Number of places">
-                    </div>
+
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Room type *</label>
                         <select name="room_type"
@@ -109,6 +71,15 @@
                             <option value="">Private or shared?</option>
                             <option value="private">Private</option>
                             <option value="shared">Shared</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Education year *</label>
+                        <select name="education_year"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
+                            <option value="">first or second ?</option>
+                            <option value="first">First</option>
+                            <option value="second">Second</option>
                         </select>
                     </div>
                 </div>
@@ -121,7 +92,7 @@
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Photos *</label>
                     <div class="border-2 border-dashed rounded-lg p-8 text-center relative">
-                        <input type="file" name="photos[]" multiple accept="image/*"
+                        <input type="file" name="profile_pic" accept="image/*"
                             class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                             onchange="updateFileList(this)">
                         <div class="flex flex-col items-center">
@@ -187,22 +158,6 @@
                 </div>
             </div>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Availability *</label>
-                <div class="flex items-center gap-4">
-                    <label class="flex items-center gap-2">
-                        <input type="checkbox" name="immediately" class="form-checkbox text-[#6366F1]">
-                        <span>Immediately</span>
-                    </label>
-                    <span>- or -</span>
-                    <span>- From -</span>
-                    <input type="date" name="from_date"
-                        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
-                    <span>- To -</span>
-                    <input type="date" name="to_date"
-                        class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
-                </div>
-            </div>
 
             <button type="submit"
                 class="w-full bg-[#6366F1] text-white py-3 rounded-lg hover:bg-[#5558E6] transition-colors">
@@ -213,58 +168,7 @@
     </main>
 
     <script>
-    const demandBtn = document.getElementById('demandBtn');
-    const offerBtn = document.getElementById('offerBtn');
-    const offerFields = document.getElementById('offerFields');
-    const typeField = document.getElementById('type');
 
-
-    function setActiveButton(activeBtn, inactiveBtn) {
-        activeBtn.classList.add('bg-[#6366F1]', 'text-white');
-        activeBtn.classList.remove('border');
-        activeBtn.setAttribute('data-active', 'true');
-
-        inactiveBtn.classList.remove('bg-[#6366F1]', 'text-white');
-        inactiveBtn.classList.add('border');
-        inactiveBtn.setAttribute('data-active', 'false');
-
-        if (activeBtn === offerBtn) {
-            offerFields.classList.remove('hidden');
-        } else {
-            offerFields.classList.add('hidden');
-        }
-    }
-
-
-    demandBtn.addEventListener('click', () => {
-        typeField.value = 'demand';
-        setActiveButton(demandBtn, offerBtn);
-    });
-
-    offerBtn.addEventListener('click', () => {
-        typeField.value = 'offer';
-        setActiveButton(offerBtn, demandBtn);
-    });
-
-    // Set demand as default active button
-    setActiveButton(demandBtn, offerBtn);
-
-    // File upload handling
-    function updateFileList(input) {
-        const fileList = document.getElementById('fileList');
-        fileList.innerHTML = '';
-
-        for (let i = 0; i < input.files.length; i++) {
-            const file = input.files[i];
-            const fileItem = document.createElement('div');
-            fileItem.className = 'text-sm text-gray-600';
-            fileItem.textContent = `${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB)`;
-            fileList.appendChild(fileItem);
-        }
-    }
-
-
-    // Preferences dropdown functionality
     const preferencesDropdown = document.getElementById('preferencesDropdown');
     const preferencesMenu = document.getElementById('preferencesMenu');
     const selectedPreferences = document.getElementById('selectedPreferences');
