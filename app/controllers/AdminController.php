@@ -16,6 +16,9 @@ class AdminController extends BaseController {
     $this->renderDashboard('admin/raports', ["rapports" => $rapports]);
    }
 
- 
-
+   public function deleteUser($id) {
+    $this->UserModel->deleteUser($id);
+    header('Location: /admin/users');
+    exit();
+   }
 }
