@@ -47,12 +47,17 @@ class AuthController extends BaseController
                 $password = $_POST['password'];
                 $userData = [$email, $password];
                 $user = $this->UserModel->login($userData);
-                if($user){
-                    $this->render('dashboard');
+                extract($user);
+                if($info){
                     $_SESSION['user_id'] = $user["id"];
-                    $_SESSION['username'] = $user['nom_utilisateur'];
+                    $_SESSION['username'] = $user['name'];
                     $_SESSION['role'] = $user['role'];
                     $_SESSION['status'] = $user["status"];
+                    if($Checked["count"] === 0){
+                        header("location: /details");
+                    }else{
+                        header("location: /recherche");
+                    }
                 }
              }
         }
