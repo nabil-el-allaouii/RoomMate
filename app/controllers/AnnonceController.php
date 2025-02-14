@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__.'/../Models/Annonce.php';    
+require_once __DIR__.'/../Models/Annonce.php';   
+
     class AnnonceController {
         public function addAnnonce() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,12 +12,11 @@ require_once __DIR__.'/../Models/Annonce.php';
                 $capacity = $_POST['capacity'] ?? 1;
                 $room_type = $_POST['room_type'] ?? null;
                 $city = $_POST['city'] ?? '';
-                $preferences = $_POST['preferences'] ?? '  ';
+                $preferences =isset($_POST['preferences']) ? implode('-', $_POST['preferences']) : ' ';
                 $from_date = $_POST['from_date'] ?? null;
                 $to_date = $_POST['to_date'] ?? null;
-    
-                $user_id = $_SESSION['user_id'] ?? 2;  
-    
+                $user_id = $_SESSION['user_id'] ?? 0;  
+
                 $annonce = new Annonce($user_id, $type, $status, $title, $description, $budget, $capacity, $room_type, $city, $preferences, $from_date, $to_date);
                 if ($annonce_id =$annonce->ajouterAnnonce()) {
                     
