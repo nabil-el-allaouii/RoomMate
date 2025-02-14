@@ -1,3 +1,6 @@
+<?php 
+    print_r($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,13 +26,15 @@
                 <!-- Chat Items -->
                 <div class="chat-list space-y-1">
                     <!-- Sample Chat Items -->
+                    <?php foreach ($conversations as $conversation) : ?>    
                     <div class="flex items-center p-3 hover:bg-gray-50 cursor-pointer">
                         <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full">
                         <div class="ml-3">
-                            <div class="font-medium">John Doe</div>
+                            <div class="font-medium"><?= $conversation['user_one'] ?></div>
                             <div class="text-sm text-gray-500">Last message...</div>
                         </div>
                     </div>
+                        <?php endforeach; ?>
                     <!-- Add more chat items as needed -->
                 </div>
             </div>
@@ -67,16 +72,19 @@
                     </div>
                 </div>
             </div>
-
+            <form action="/sendMessage" method="post">
             <!-- Message Input -->
             <div class="p-4 border-t bg-white">
                 <div class="flex items-center">
-                    <input type="text" placeholder="Type a message..." class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    <input type="hidden" name="conversation_id" value="1">
+                    <input type="hidden" name="sender_id" value="1">
+                    <input type="text" placeholder="Type a message..." name="message" class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
                     <button class="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none">
                         Send
                     </button>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </body>

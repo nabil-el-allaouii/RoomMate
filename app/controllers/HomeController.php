@@ -21,9 +21,12 @@ class HomeController extends BaseController {
       
       $this->render('/profil');
      }
-
+     
      public function ShowHome(){
          $this->render('/index');
      }
-
+     
+     public function showChat(){
+        $this->render('user/chat');
+     }
 }

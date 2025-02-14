@@ -15,6 +15,12 @@ class BaseController
         extract($data);
         include __DIR__ . '/../app/views/dashboard/' . $view . '.php';
     }
+    
+    public function renderChat($view, $data = [])
+    {
+        extract($data);
+        include __DIR__ . '/../app/views/user/' . $view . '.php';
+    }
    
    
 }

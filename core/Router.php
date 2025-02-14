@@ -43,7 +43,7 @@ class Router
                     // Call the controller method
                     return call_user_func_array([$controller, $method], $matches);
                 }
-
+                
                 // Otherwise, call the callback directly
                 return call_user_func_array($callback, $matches);
             }
