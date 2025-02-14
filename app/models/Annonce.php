@@ -56,8 +56,9 @@ class Annonce {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public static function getAllMyAnnonces(){
+        $user_id = $_SESSION['user_id'];
         $db = Database::getinstance()->getconn(); 
-        $query = "SELECT * FROM annonces where user_id=2"; 
+        $query = "SELECT * FROM annonces where user_id=$user_id";
         $stmt = $db->query($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
