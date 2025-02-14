@@ -82,3 +82,11 @@ CREATE TABLE reports (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (annonce_id) REFERENCES annonces(id) ON DELETE CASCADE
 );
+
+CREATE TABLE reset_pass (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    status ENUM('pending', 'active') NOT NULL DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE
+);
