@@ -48,30 +48,7 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y">
-                            <!-- Example Row 1 -->
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-[#6366F1] flex items-center justify-center text-white">
-                                            J
-                                        </div>
-                                        <span>john.doe@example.com</span>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-gray-500">2024-03-15 14:30</td>
-                                <td class="px-6 py-4">
-                                    <input type="text" 
-                                           placeholder="Enter new password" 
-                                           class="w-full px-3 py-1 border rounded focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
-                                </td>
-                                <td class="px-6 py-4">
-                                    <button class="bg-[#6366F1] text-white px-4 py-1 rounded hover:bg-[#5558E6] transition-colors">
-                                        Reset
-                                    </button>
-                                </td>
-                            </tr>
 
-                            <!-- Example Row 2 -->
                             <tr class="hover:bg-gray-50">
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
@@ -85,8 +62,8 @@
                                 <td class="px-6 py-4">
                                     <input type="text" 
                                            placeholder="Enter new password" 
-                                           disabled
-                                           class="w-full px-3 py-1 border rounded bg-gray-50 text-gray-400">
+                                           
+                                           class="w-full px-3 py-1 border rounded">
                                 </td>
                                 <td class="px-6 py-4">
                                     <button disabled class="bg-gray-100 text-gray-400 px-4 py-1 rounded cursor-not-allowed">
