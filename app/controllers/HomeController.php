@@ -12,9 +12,9 @@ class HomeController extends BaseController {
     $this->renderDashboard('admin/index');
    }
 
-   public function showRecherche() {
+   public function showAddAnnonce() {
       
-      $this->render('/recherche');
+      $this->render('user/addAnnonce');
      }
 
    public function showProfile() {
