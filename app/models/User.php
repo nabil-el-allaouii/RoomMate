@@ -2,13 +2,14 @@
 require_once(__DIR__ . '/../config/db.php');
 class User
 {
-
+    private $user_id;
     private $conn;
 
-    public function __construct()
+    public function __construct($user_id = "")
     {
         $instance = Database::getinstance();
         $this->conn = $instance->getconn();
+        $this->user_id = $user_id;
     }
 
     public function register($user)
@@ -26,13 +27,18 @@ class User
 
     public function login($userData)
     {
-
+        $InfoAndCheck = [];
         try {
             $result = $this->conn->prepare("SELECT * FROM users WHERE email=?");
             $result->execute([$userData[0]]);
             $user = $result->fetch(PDO::FETCH_ASSOC);
             if ($user && password_verify($userData[1], $user["password"])) {
-                return  $user;
+                $check = $this->conn->prepare("SELECT count(id) as count from details where user_id = ?");
+                $check->execute([$user['id']]);
+                $HasDetails = $check->fetch(PDO::FETCH_ASSOC);
+                $InfoAndCheck["Checked"] = $HasDetails;
+                $InfoAndCheck["info"] = $user;
+                return  $InfoAndCheck;
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
