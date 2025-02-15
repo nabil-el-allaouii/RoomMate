@@ -5,7 +5,7 @@ require_once __DIR__.'/../Models/Annonce.php';
         public function addAnnonce() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $type = $_POST['type'] ?? '';
-                $status = 'active';
+                $status = 'pending';
                 $title = $_POST['title'] ?? '';
                 $description = $_POST['description'] ?? '';
                 $budget = $_POST['budget'] ?? 0;

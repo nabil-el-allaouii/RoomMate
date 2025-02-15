@@ -10,6 +10,9 @@ require_once '../app/controllers/HomeController.php';
 require_once '../app/controllers/AuthController.php';
 require_once '../app/controllers/AdminController.php';
 require_once '../app/controllers/AnnonceController.php';
+require_once '../app/controllers/DetailsController.php';
+require_once '../app/controllers/MatchingController.php';
+
 require_once '../app/config/db.php';
 
 
@@ -36,6 +39,10 @@ Route::get('/addAnnonce', [HomeController::class, 'showAddAnnonce']);
 Route::get('/annonces', [HomeController::class, 'showAddAnnonce']);
 Route::post('/annonces', [AnnonceController::class, 'addAnnonce']);
 
+Route::get('/details', [DetailsController::class, 'Details']);
+Route::post('/details', [DetailsController::class, 'addDetails']);
+
+Route::get('/matching', [MatchingController::class, 'showMatchingResults']);
 
 
 Route::get('/recherche', [AnnonceController::class, 'showAnnonces']); 

@@ -28,31 +28,34 @@
                             d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                     </svg>
                 </button>
-                <a href="/mesannonces" class="bg-[#6366F1] text-white px-6 py-2 rounded-lg">Mes annonces</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
     <main class="max-w-2xl mx-auto py-12 px-4">
-        <h1 class="text-3xl font-semibold text-center mb-2">Add a new listing</h1>
-        <p class="text-center text-gray-500 mb-8">you are steps away from finding a new roommate</p>
+        <h1 class="text-3xl font-semibold text-center mb-2">Merci de remplir cette formulaire</h1>
+        <p class="text-center text-gray-500 mb-8">Ca va vous aider a trouver les bonnes offres de logement pour vous !
+        </p>
 
         <form action="/details" id="listingForm" class="space-y-6" method="POST" enctype="multipart/form-data">
-
             <div class="space-y-4">
-            <div>
+                <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">BIO *</label>
                     <textarea name="bio" required
                         class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
-                        rows="4" placeholder="Write a detailed description about your listing"></textarea>
+                        rows="4" placeholder="Write adescription about yourself"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Current City * </label>
-                    <input type="text" name="current_city"
-                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
-                        placeholder="Enter your address">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Current City *</label>
+                    <select name="current_city" required
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
+                        <option value="">Choose a city</option>
+                        <option value="Nador">Nador</option>
+                        <option value="Safi">Safi</option>
+                        <option value="Youssoufia">Youssoufia</option>
+                    </select>
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Origin City * </label>
@@ -64,30 +67,29 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
 
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Room type *</label>
-                        <select name="room_type"
-                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
-                            <option value="">Private or shared?</option>
-                            <option value="private">Private</option>
-                            <option value="shared">Shared</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Education year *</label>
-                        <select name="education_year"
-                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
-                            <option value="">first or second ?</option>
-                            <option value="first">First</option>
-                            <option value="second">Second</option>
-                        </select>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Room type *</label>
+                            <select name="room_type"
+                                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
+                                <option value="">Private or shared?</option>
+                                <option value="private">Private</option>
+                                <option value="shared">Shared</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Education year *</label>
+                            <select name="education_year"
+                                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
+                                <option value="">first or second ?</option>
+                                <option value="first">First</option>
+                                <option value="second">Second</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <!-- Offer-specific fields -->
-            <div id="offerFields" class="space-y-4 hidden">
+                <!-- Offer-specific fields -->
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Photos *</label>
@@ -106,68 +108,92 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="fileList" class="mt-4 text-left"></div>
-            <div class="relative">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Preferences *</label>
-                <button type="button" id="preferencesDropdown"
-                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent bg-white text-left flex justify-between items-center">
-                    <span id="selectedPreferences" class="text-gray-500">Select preferences</span>
-                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
 
-                <div id="preferencesMenu" class="hidden absolute z-10 mt-1 w-full bg-white border rounded-lg shadow-lg">
-                    <div class="p-3 space-y-2 max-h-60 overflow-y-auto">
-                        <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                            <input type="checkbox" name="preferences[]" value="no_smoking"
-                                class="rounded text-[#6366F1] focus:ring-[#6366F1]">
-                            <span class="text-gray-700">No Smoking</span>
-                        </label>
-                        <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                            <input type="checkbox" name="preferences[]" value="no_pets"
-                                class="rounded text-[#6366F1] focus:ring-[#6366F1]">
-                            <span class="text-gray-700">No Pets</span>
-                        </label>
-                        <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                            <input type="checkbox" name="preferences[]" value="quiet"
-                                class="rounded text-[#6366F1] focus:ring-[#6366F1]">
-                            <span class="text-gray-700">Quiet Environment</span>
-                        </label>
-                        <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                            <input type="checkbox" name="preferences[]" value="quiet"
-                                class="rounded text-[#6366F1] focus:ring-[#6366F1]">
-                            <span class="text-gray-700">No Party</span>
-                        </label>
-                        <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                            <input type="checkbox" name="preferences[]" value="quiet"
-                                class="rounded text-[#6366F1] focus:ring-[#6366F1]">
-                            <span class="text-gray-700">No Guest</span>
-                        </label>
+                <div id="fileList" class="mt-4 text-left"></div>
+                <div class="relative">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Preferences *</label>
+                    <button type="button" id="preferencesDropdown"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent bg-white text-left flex justify-between items-center">
+                        <span id="selectedPreferences" class="text-gray-500">Select preferences</span>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div id="preferencesMenu"
+                        class="hidden absolute z-10 mt-1 w-full bg-white border rounded-lg shadow-lg">
+                        <div class="p-3 space-y-2 max-h-60 overflow-y-auto">
+                            <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="checkbox" name="preferences[]" value="no_smoking"
+                                    class="rounded text-[#6366F1] focus:ring-[#6366F1]">
+                                <span class="text-gray-700">No Smoking</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="checkbox" name="preferences[]" value="no_pets"
+                                    class="rounded text-[#6366F1] focus:ring-[#6366F1]">
+                                <span class="text-gray-700">No Pets</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="checkbox" name="preferences[]" value="quiet"
+                                    class="rounded text-[#6366F1] focus:ring-[#6366F1]">
+                                <span class="text-gray-700">Quiet Environment</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="checkbox" name="preferences[]" value="quiet"
+                                    class="rounded text-[#6366F1] focus:ring-[#6366F1]">
+                                <span class="text-gray-700">No Party</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="checkbox" name="preferences[]" value="quiet"
+                                    class="rounded text-[#6366F1] focus:ring-[#6366F1]">
+                                <span class="text-gray-700">No Guest</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Budget *</label>
-                    <input type="number" name="budget" required
-                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
-                        placeholder="Your budget (in Dirham)">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Budget *</label>
+                        <input type="number" name="budget" required
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent"
+                            placeholder="Your budget (in Dirham)">
+                    </div>
                 </div>
-            </div>
+                <div class="">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Availability *</label>
+                    <div class="flex items-center gap-4">
+                        <span>- From -</span>
+                        <input type="date" name="from_date"
+                            class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
+                        <span>- To -</span>
+                        <input type="date" name="to_date"
+                            class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
+                    </div>
+                </div>
 
 
-            <button type="submit"
-                class="w-full bg-[#6366F1] text-white py-3 rounded-lg hover:bg-[#5558E6] transition-colors">
-                Submit
-            </button>
+                <button type="submit"
+                    class="w-full bg-[#6366F1] text-white py-3 rounded-lg hover:bg-[#5558E6] transition-colors">
+                    Submit
+                </button>
             </div>
         </form>
     </main>
 
     <script>
+    function updateFileList(input) {
+        const fileList = document.getElementById('fileList');
+        fileList.innerHTML = '';
+
+        for (let i = 0; i < input.files.length; i++) {
+            const file = input.files[i];
+            const fileItem = document.createElement('div');
+            fileItem.className = 'text-sm text-gray-600';
+            fileItem.textContent = `${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB)`;
+            fileList.appendChild(fileItem);
+        }
+    }
 
     const preferencesDropdown = document.getElementById('preferencesDropdown');
     const preferencesMenu = document.getElementById('preferencesMenu');
