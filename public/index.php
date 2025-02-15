@@ -10,6 +10,7 @@ require_once '../app/controllers/HomeController.php';
 require_once '../app/controllers/AuthController.php';
 require_once '../app/controllers/AdminController.php';
 require_once '../app/controllers/AnnonceController.php';
+require_once '../app/controllers/ChatController.php';
 require_once '../app/config/db.php';
 
 
@@ -37,7 +38,7 @@ Route::get('/annonces', [HomeController::class, 'showAddAnnonce']);
 
 Route::post('/annonces', [AnnonceController::class, 'addAnnonce']);
 
-Route::get('/chat', [HomeController::class, 'showChat']);
+Route::get('/chat', [ChatController::class, 'showChat']);
 Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
 Route::get('/getMessages', [ChatController::class, 'getMessages']);
 Route::get('/getConversations', [ChatController::class, 'getConversations']);

@@ -30,7 +30,7 @@
                     <div class="flex items-center p-3 hover:bg-gray-50 cursor-pointer">
                         <img src="https://via.placeholder.com/40" alt="User" class="w-10 h-10 rounded-full">
                         <div class="ml-3">
-                            <div class="font-medium"><?= $conversation['user_one'] ?></div>
+                            <div class="font-medium"></div>
                             <div class="text-sm text-gray-500">Last message...</div>
                         </div>
                     </div>

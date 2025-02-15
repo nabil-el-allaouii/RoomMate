@@ -26,7 +26,5 @@ class HomeController extends BaseController {
          $this->render('/index');
      }
      
-     public function showChat(){
-        $this->render('user/chat');
-     }
+     
 }

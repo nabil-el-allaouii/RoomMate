@@ -5,7 +5,9 @@ class BaseController
     // Render a view
     public function render($view, $data = [])
     {
-        
+        echo '<pre>';
+        print_r($data);
+        echo '</pre>';
         extract($data);
         include __DIR__ . '/../app/views/' . $view . '.php';
     }

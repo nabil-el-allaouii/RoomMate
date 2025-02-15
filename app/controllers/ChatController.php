@@ -16,15 +16,21 @@ class ChatController extends BaseController {
     }
 
     public function getConversations($user_id) {
-        return $this->conversation->getConversations($user_id);
+        $conversations = $this->conversation->getConversations($user_id);
+        return $conversations;
     }
 
     public function sendMessage($conversation_id, $sender_id, $message) {
         return $this->message->sendMessage($conversation_id, $sender_id, $message);
     }   
-
+    
     public function getMessages($conversation_id) {
         return $this->message->getMessages($conversation_id);
     }
+
+    public function showChat(){
+        $conversations = $this->getConversations($_SESSION['user_id']);
+        $this->render('user/chat', ['conversations' => $conversations]);
+     }
 
 }
