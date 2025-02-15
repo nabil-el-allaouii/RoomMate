@@ -2,6 +2,8 @@
 // Include Composer's autoloader
 require __DIR__ . '/vendor/autoload.php';
 
+
+
 // Import PHPMailer classes into the global namespace
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
