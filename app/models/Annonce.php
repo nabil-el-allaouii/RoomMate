@@ -49,6 +49,7 @@ class Annonce {
         $stmt = $db->prepare($query);
         return $stmt->execute([$id]);
     }
+
     public static function getAllAnnonces(){
         $db = Database::getinstance()->getconn(); 
         $query = "SELECT * FROM annonces"; 
@@ -69,6 +70,34 @@ class Annonce {
         $stmt = $db->prepare($query);
         $stmt->execute([$annonce_id, $fileDestination]);
     }
+
+    public static function getAnnonceById($id) {
+        try {
+            $db = Database::getinstance()->getconn();
+            $query = "SELECT * FROM annonces WHERE id = ?";
+            $stmt = $db->prepare($query);
+            $stmt->execute([$id]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // echo "Error: " . $e->getMessage();
+            die( 'Error getting annonce: ' . $e->getMessage());
+        }
+    }
+
+    public static function getAnnoncePhotos($id) {
+        try {
+            $db = Database::getinstance()->getconn();
+            $query = "SELECT * FROM annonce_photos WHERE annonce_id = ?";
+            $stmt = $db->prepare($query);
+            $stmt->execute([$id]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // echo "Error: " . $e->getMessage();
+            die( 'Error getting annonce photos: ' . $e->getMessage());
+        }
+    }
+
+
 
 
 

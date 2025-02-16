@@ -29,7 +29,7 @@ class Route
         self::addRoute('POST', $route, $callback);
     }
 
-   
+    
 
     /**
      * Add the route to the router

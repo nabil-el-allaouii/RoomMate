@@ -42,22 +42,22 @@ Route::post('/annonces', [AnnonceController::class, 'addAnnonce']);
 Route::get('/details', [DetailsController::class, 'Details']);
 Route::post('/details', [DetailsController::class, 'addDetails']);
 
+
 Route::get('/matching', [MatchingController::class, 'showMatchingResults']);
 
 
 Route::get('/recherche', [AnnonceController::class, 'showAnnonces']); 
 Route::get('/mesannonces', [AnnonceController::class, 'showMyAnnonces']); 
-Route::post('/deleteAnnonce', [AnnonceController::class, 'deleteAnnonce']); 
+Route::get('/annonce/(\d+)', [AnnonceController::class, 'showAnnonceDetails']);
+Route::post('/deleteAnnonce', [AnnonceController::class, 'deleteAnnonce']);
 
 
 
 // admin routers
 
 Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/admin/users', [AdminController::class, 'handleUsers']);
-Route::get('/admin/categories', [AdminController::class, 'categories']);
-Route::get('/admin/testimonials', [AdminController::class, 'testimonials']);
-Route::get('/admin/projects', [AdminController::class, 'projects']);
+Route::get('/admin/reports', [AdminController::class, 'showReports']);
+Route::get('/admin/reset_password', [AdminController::class, 'showForgotPassword']);
 
 
 

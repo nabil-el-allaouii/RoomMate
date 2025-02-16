@@ -21,6 +21,8 @@ CREATE TABLE details (
     origin_city VARCHAR(255) NOT NULL,
     current_city VARCHAR(255) NOT NULL,
     profile_pic VARCHAR(255) DEFAULT '/assets/profile.jpg',
+    from_date DATE NOT NULL,
+    to_date DATE NOT NULL,
     bio TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__.'/../Models/Details.php';   
 
-class DetailsController {
+class DetailsController extends BaseController {
     public function Details() {
         include __DIR__.'/../Views/details.php';
     }
@@ -36,7 +36,12 @@ class DetailsController {
             }
         }
     }
+    
 
-}}
+}
+
+
+
+}
      
 ?>

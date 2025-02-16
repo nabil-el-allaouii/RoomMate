@@ -1,19 +1,23 @@
 <?php 
 require_once (__DIR__.'/../models/User.php');
-require_once (__DIR__.'/../models/rapports.php');
+require_once (__DIR__.'/../models/Report.php');
 
 class AdminController extends BaseController {
-    private $RapportsModel ;
+    private $ReportModel ;
 
     public function __construct(){
 
-        $this->RapportsModel = new Rapports();
+        $this->ReportModel = new Report();
 
      }
 
-   public function Raports() {
-    $rapports = $this->RapportsModel->getRapports();
-    $this->renderDashboard('admin/raports', ["rapports" => $rapports]);
+   public function showReports() {
+    $reports = $this->ReportModel->getReports();
+    $this->render('admin/reports', ["reports" => $reports]);
+   }
+   
+   public function showForgotPassword () {
+    $this->render('admin/reset_password');
    }
 
    public function deleteUser($id) {

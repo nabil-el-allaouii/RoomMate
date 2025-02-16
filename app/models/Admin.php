@@ -1,6 +1,6 @@
 <?php
 
-class Admin {
+class Admin extends User {
 
     private $conn;
 
@@ -25,7 +25,7 @@ class Admin {
             return false;
         } catch (PDOException $e) {
             // echo "Error: " . $e->getMessage();
-            die($e->getMessage());
+            die( 'error inserting email pass: ' . $e->getMessage());
         }
     }
 
@@ -36,7 +36,7 @@ class Admin {
             $stmt->execute([$password, $email]);
             return true;
         } catch (PDOException $e) {
-            die($e->getMessage());
+            die( 'error updating password: ' . $e->getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ class Admin {
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die($e->getMessage());
+            die( 'error getting all users: ' . $e->getMessage());
         }
     }
 }
