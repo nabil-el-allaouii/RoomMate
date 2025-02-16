@@ -38,10 +38,11 @@ Route::get('/annonces', [HomeController::class, 'showAddAnnonce']);
 
 Route::post('/annonces', [AnnonceController::class, 'addAnnonce']);
 
-Route::get('/chat', [ChatController::class, 'showChat']);
+Route::get('/chat/{user_id}', [ChatController::class, 'showChat']);
 Route::post('/sendMessage', [ChatController::class, 'sendMessage']);
-Route::get('/getMessages', [ChatController::class, 'getMessages']);
-Route::get('/getConversations', [ChatController::class, 'getConversations']);
+Route::get('/showMessage', [ChatController::class, 'getMessages']);
+// Route::get('/showMessage', [ChatController::class, 'showMessage']);
+// Route::get('/getConversations', [ChatController::class, 'getConversations']);
 
 Route::get('/recherche', [AnnonceController::class, 'showAnnonces']); 
 Route::get('/mesannonces', [AnnonceController::class, 'showMyAnnonces']); 
