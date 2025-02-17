@@ -123,5 +123,15 @@ class User
             echo "Error " . $e->getMessage();
         }
     }
-    
+
+    public function deleteUser($id) {
+        try {
+            $query = "DELETE FROM users WHERE id = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$id]);
+            return true;    
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 }
