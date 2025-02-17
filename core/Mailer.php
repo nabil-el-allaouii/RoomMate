@@ -1,9 +1,11 @@
 <?php
 
+
 require __DIR__ . '/../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
+
 
 
 
@@ -24,8 +26,10 @@ class Mailer {
             $this->mail->isSMTP();
             $this->mail->Host       = $_ENV['smtp_host'];
             $this->mail->SMTPAuth   = true;
+
             $this->mail->Username   = $_ENV['smtp_username'];
             $this->mail->Password   = $_ENV['smtp_password'];
+
             $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $this->mail->Port       = $_ENV['smtp_port'];
 

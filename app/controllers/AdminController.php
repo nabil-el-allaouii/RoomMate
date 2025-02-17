@@ -1,8 +1,10 @@
 <?php 
 require_once (__DIR__.'/../models/User.php');
+
 require_once (__DIR__.'/../models/Report.php');
 require_once (__DIR__.'/../models/Admin.php');
 require_once (__DIR__.'/../../core/Mailer.php');
+
 
 class AdminController extends BaseController {
     private $ReportModel ;

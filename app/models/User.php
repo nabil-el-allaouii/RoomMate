@@ -46,6 +46,7 @@ class User
     }
     
 
+
     public function banUser($id) {
         try {
             $query = "UPDATE users SET status = 'banned' WHERE id = ?";
@@ -88,5 +89,34 @@ class User
         } catch (PDOException $e) {
             die( 'error getting all users: ' . $e->getMessage());
         }
+
+    public function verifyToken($token, $userId)
+    {
+        try {
+            $verify = $this->conn->prepare("UPDATE users SET token = ? WHERE id = ?");
+            $verify->execute([$token, $userId]);
+            return self::getEmail($userId);
+        } catch (PDOException $e) {
+            echo "Error " . $e->getMessage();
+        }
+    }
+
+    public function getEmail($id)
+    {
+        $email = $this->conn->prepare("SELECT email from users where id = ?");
+        $email->execute([$id]);
+        $result = $email->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['email'] : null;
+    }
+    public function GetVerified($token, $id)
+    {
+        try {
+            $Verified = $this->conn->prepare("UPDATE users set status = 'active' where token = ? and id = ?");
+            $Verified->execute([$token, $id]);
+            return true;
+        } catch (PDOException $e) {
+            echo "Error " . $e->getMessage();
+        }
+
     }
 }
