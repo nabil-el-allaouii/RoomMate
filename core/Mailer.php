@@ -46,6 +46,7 @@ class Mailer {
             // echo "Email could not be sent. PHPMailer Error: {$this->mail->ErrorInfo}";
             // die("Email could not be sent. PHPMailer Error: {$this->mail->ErrorInfo}");
             return ['status' => 'error', 'message' => "Email could not be sent. PHPMailer Error: {$this->mail->ErrorInfo}"];
+            die("Email could not be sent. PHPMailer Error: {$this->mail->ErrorInfo}");
         }
     }
 }

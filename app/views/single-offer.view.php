@@ -35,7 +35,7 @@
             <div class="flex overflow-x-auto gap-4 snap-x snap-mandatory scrollbar-hide">
                 <?php foreach ($photos as $photo) { ?>
                     <div class="flex-shrink-0 w-full snap-center">
-                        <img src="/uploads/<?= $photo ?>" alt="Room 1" class="w-full h-[400px] object-cover rounded-lg">
+                        <img src="../../public/<?= $photo['photo'] ?>" alt="Room 1" class="w-full h-[400px] object-cover rounded-lg">
                     </div>
                 <?php } ?>
             </div>

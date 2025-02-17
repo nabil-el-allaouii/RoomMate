@@ -88,6 +88,7 @@
                             <div class="flex gap-2">
                                 <form action="/admin/ban-reporter" method="POST" class="inline">
                                     <input type="hidden" name="reporter_id" value="<?php echo $report['reporter_id'] ?? 'Unknown'; ?>">
+                                    <input type="hidden" name="id" value="<?php echo $report['id'] ?? 'Unknown'; ?>">
                                     <button type="submit" 
                                             class="px-3 py-1 border border-red-500 text-red-500 rounded hover:bg-red-50">
                                         Ban Reporter
@@ -95,6 +96,7 @@
                                 </form>
 
                                 <form action="/admin/ban-reported" method="POST" class="inline">
+                                    <input type="hidden" name="id" value="<?php echo $report['id'] ?? 'Unknown'; ?>">
                                     <input type="hidden" name="reported_id" value="<?php echo $report['reported_id'] ?? 'Unknown'; ?>">
                                     <button type="submit" 
                                             class="px-3 py-1 border border-red-500 text-red-500 rounded hover:bg-red-50">

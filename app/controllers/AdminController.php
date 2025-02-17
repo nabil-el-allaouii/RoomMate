@@ -1,16 +1,21 @@
 <?php 
 require_once (__DIR__.'/../models/User.php');
 require_once (__DIR__.'/../models/Report.php');
+require_once (__DIR__.'/../models/Admin.php');
+require_once (__DIR__.'/../../core/Mailer.php');
 
 class AdminController extends BaseController {
     private $ReportModel ;
     private $UserModel;
+    private $AdminModel;
+    private $Mailer;
 
     public function __construct(){
 
         $this->ReportModel = new Report();
         $this->UserModel = new User();
-
+        $this->AdminModel = new Admin();
+        $this->Mailer = new Mailer();
      }
 
    public function showReports() {
@@ -19,7 +24,8 @@ class AdminController extends BaseController {
    }
 
    public function showForgotPassword () {
-    $this->render('admin/reset_password');
+    $requests = $this->AdminModel->getRequests();
+    $this->render('admin/reset_password', ["requests" => $requests]);
    }
 
    public function deleteUser($id) {
@@ -36,10 +42,16 @@ class AdminController extends BaseController {
    }
 
    public function banUser() {
-    $id = htmlspecialchars($_POST['reporter_id']) ?? htmlspecialchars($_POST['reported_id']);
+    if(isset($_POST['reporter_id'])){
+      $id = htmlspecialchars($_POST['reporter_id']);
+    }else{
+      $id = htmlspecialchars($_POST['reported_id']);
+    }
+
+    $annonce_id = htmlspecialchars($_POST['id']);
     $ban =$this->UserModel->banUser($id);
     if ($ban) {
-      $this->ReportModel->confirmReport($id);
+      $this->ReportModel->confirmReport($annonce_id);
     }
     header('Location: /admin/reports');
     exit();
@@ -47,10 +59,19 @@ class AdminController extends BaseController {
 
    
    public function resetPassword() {
-    $email = htmlspecialchars($_POST['email']);
-    $password = htmlspecialchars($_POST['password']);
-    $this->AdminModel->resetPassword($email, $password);
+    $email = htmlspecialchars(trim($_POST['email']));
+    $password = htmlspecialchars(trim($_POST['password']));
+    $reset = $this->AdminModel->resetPassword($email, $password);
+    $subject = "Password Reset";
+    $body = "<p>Your password has been reset to: <b>" . $password . "</b></p>";
+    if ($reset) {
+        $this->Mailer->sendEmail("maileryoucode@gmail.com", $subject, $body);
+        $this->AdminModel->deleteRequest($email);
+    } else {
+        die("Error resetting password");
+    }
     header('Location: /admin/reset_password');
     exit();
    }
+
 }

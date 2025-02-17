@@ -60,6 +60,7 @@ Route::post('/deleteAnnonce', [AnnonceController::class, 'deleteAnnonce']);
 Route::get('/admin', [AdminController::class, 'index']);
 Route::get('/admin/reports', [AdminController::class, 'showReports']);
 Route::get('/admin/reset_password', [AdminController::class, 'showForgotPassword']);
+Route::post('/admin/reset_password', [AdminController::class, 'resetPassword']);
 Route::post('/admin/ban-reporter', [AdminController::class, 'banUser']);
 Route::post('/admin/ban-reported', [AdminController::class, 'banUser']);    
 Route::post('/admin/delete-report', [AdminController::class, 'deleteReport']);

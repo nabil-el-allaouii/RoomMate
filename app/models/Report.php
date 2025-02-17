@@ -63,5 +63,18 @@ class Report {
             die($e->getMessage());
         }
     }
+
+    public function deleteReport($id)
+    {
+        try {
+            $query = "DELETE FROM reports WHERE id = :id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute(['id' => $id]);
+            return true;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    
 }
 
