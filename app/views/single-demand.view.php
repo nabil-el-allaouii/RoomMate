@@ -38,9 +38,9 @@
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <!-- Profile Section -->
                     <div class="flex flex-col items-center mb-6">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e" alt="Hakim Jellaba"
+                        <img src="<?php echo $demand['photo'] ?>" alt="Hakim Jellaba"
                             class="w-16 h-16 rounded-full object-cover mb-2">
-                        <h3 class="font-semibold">Hakim Jellaba</h3>
+                        <h3 class="font-semibold"><?php echo $demand['name'] ?></h3>
                         <p class="text-gray-500 text-sm">Fes - 23</p>
                     </div>
 
@@ -48,25 +48,25 @@
                     <div class="space-y-4 mb-6">
                         <div class="flex items-center justify-between">
                             <span class="text-gray-500">Budget</span>
-                            <span class="font-medium">800 DH</span>
+                            <span class="font-medium"><?php echo $demand['budget'] ?> DH</span>
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="text-gray-500">City</span>
-                            <span class="font-medium">Safi</span>
+                            <span class="font-medium"><?php echo $demand['city'] ?></span>
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="text-gray-500">Availability</span>
-                            <span class="font-medium">Immediatly</span>
+                            <span class="font-medium"><?php echo $demand['from_date'] ?> | <?php echo $demand['to_date'] ?></span>
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="text-gray-500">Room Type</span>
-                            <span class="font-medium">Shared</span>
+                            <span class="font-medium"><?php echo $demand['room_type'] ?></span>
                         </div>
                     </div>
 
                     <!-- Contact Button -->
                     <button class="w-full bg-[#6C5CE7] text-white py-3 rounded-lg mb-4">
-                        Contact Hakim
+                        Contact <?php echo $demand['name'] ?>
                     </button>
 
                     <!-- Report Link -->
