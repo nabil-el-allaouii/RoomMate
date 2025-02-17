@@ -49,6 +49,7 @@ Route::get('/matching', [MatchingController::class, 'showMatchingResults']);
 Route::get('/recherche', [AnnonceController::class, 'showAnnonces']); 
 Route::get('/mesannonces', [AnnonceController::class, 'showMyAnnonces']); 
 Route::get('/annonce/(\d+)', [AnnonceController::class, 'showAnnonceDetails']);
+Route::post('/annonce/(\d+)', [AnnonceController::class, 'reportAnnonce']);
 Route::post('/deleteAnnonce', [AnnonceController::class, 'deleteAnnonce']);
 
 

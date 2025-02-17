@@ -33,18 +33,11 @@
 
             <!-- Scrollable Container -->
             <div class="flex overflow-x-auto gap-4 snap-x snap-mandatory scrollbar-hide">
-                <div class="flex-shrink-0 w-full snap-center">
-                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                        alt="Living Room" class="w-full h-[400px] object-cover rounded-lg">
-                </div>
-                <div class="flex-shrink-0 w-full snap-center">
-                    <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                        alt="Room 1" class="w-full h-[400px] object-cover rounded-lg">
-                </div>
-                <div class="flex-shrink-0 w-full snap-center">
-                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
-                        alt="Room 2" class="w-full h-[400px] object-cover rounded-lg">
-                </div>
+                <?php foreach ($photos as $photo) { ?>
+                    <div class="flex-shrink-0 w-full snap-center">
+                        <img src="/uploads/<?= $photo ?>" alt="Room 1" class="w-full h-[400px] object-cover rounded-lg">
+                    </div>
+                <?php } ?>
             </div>
 
             <!-- Navigation Dots -->
@@ -61,7 +54,7 @@
             <div class="col-span-2">
                 <h1 class="text-3xl font-bold mb-4">Entire residential home appartement</h1>
                 <div class="flex items-center gap-2 text-gray-500 mb-6">
-                    <span>3 rooms</span>
+                    <span><?php echo $annonce['capacity']; ?> rooms</span>
                     <span>-</span>
                     <span class="flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -73,12 +66,7 @@
                     </span>
                 </div>
                 <p class="text-gray-600 leading-relaxed">
-                    Situé dans un quartier populaire de la médina, le riad Dar Mata vous fera vivre une vraie expérience
-                    dans la vie des marrakchis. La maison est calme, est équipée de la fibre optique pour pouvoir surfer
-                    et télétravailler sans souci. La terrasse vous permettra de profiter du soleil et des petits
-                    oiseaux. Vous aurez accès à la cuisine où les condiments de bases sont présents. La chambre vous
-                    sera attribuée en fonction de la disponibilité du riad. Les chambres ont toutes une salle de bain
-                    privée
+                    <?php echo $annonce['description']; ?>
                 </p>
             </div>
 
@@ -89,7 +77,7 @@
                         <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
                             alt="Profile" class="w-12 h-12 rounded-full object-cover">
                         <div>
-                            <h3 class="font-semibold">Hakim Jellaba</h3>
+                            <h3 class="font-semibold"><?php echo $annonce['name']; ?></h3>
                             <p class="text-gray-500 text-sm">Host</p>
                         </div>
                     </div>
@@ -102,7 +90,7 @@
                             </svg>
                             <div>
                                 <p class="text-gray-500">Budget</p>
-                                <p class="font-medium">800 DH</p>
+                                <p class="font-medium"><?php echo $annonce['budget']; ?> DH</p>
                             </div>
                         </div>
 
@@ -115,11 +103,11 @@
                             </svg>
                             <div>
                                 <p class="text-gray-500">City</p>
-                                <p class="font-medium">Safi</p>
+                                <p class="font-medium"><?php echo $annonce['city']; ?></p>
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-3">
+                        <!-- <div class="flex items-center gap-3">
                             <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -128,13 +116,13 @@
                                 <p class="text-gray-500">Address</p>
                                 <p class="font-medium">Al Amal</p>
                             </div>
-                        </div>
+                        </div> -->
 
                         <button class="w-full bg-[#6C5CE7] text-white py-3 rounded-lg mt-6">
-                            Contact Hakim
+                            Contact <?php echo $annonce['name']; ?>
                         </button>
 
-                        <button class="w-full text-red-500 flex items-center justify-center gap-2 mt-4">
+                        <button onclick="openReportModal()" class="w-full text-red-500 flex items-center justify-center gap-2 mt-4">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -179,6 +167,110 @@
             /* Chrome, Safari and Opera */
         }
     </style>
+
+    <!-- Report Modal -->
+    <div id="reportModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center overflow-y-auto">
+        <div class="bg-white rounded-lg max-w-md w-full mx-4 my-8">
+            <div class="p-6 border-b sticky top-0 bg-white z-10">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-semibold">Report this listing</h2>
+                    <button onclick="closeReportModal()" class="text-gray-400 hover:text-gray-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="max-h-[calc(100vh-8rem)] overflow-y-auto">
+                <form action="/annonce/<?php echo $annonce['id']; ?>" method="POST" class="p-6">
+                    <input type="hidden" name="annonce_id" value="<?php echo $annonce['id']; ?>">
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                    
+                    <div class="space-y-4">
+                        <p class="text-gray-600 mb-4">Please select a reason for reporting this listing:</p>
+                        
+                        <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="type" value="scam" class="text-[#6C5CE7]" required>
+                            <span class="ml-2">Scam or Fraud</span>
+                        </label>
+
+                        <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="type" value="spam" class="text-[#6C5CE7]">
+                            <span class="ml-2">Spam or Misleading</span>
+                        </label>
+
+                        <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="type" value="violence" class="text-[#6C5CE7]">
+                            <span class="ml-2">Violence or Harassment</span>
+                        </label>
+
+                        <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="type" value="drugs" class="text-[#6C5CE7]">
+                            <span class="ml-2">Drugs or Illegal Activities</span>
+                        </label>
+
+                        <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                            <input type="radio" name="type" value="other" class="text-[#6C5CE7]">
+                            <span class="ml-2">Other</span>
+                        </label>
+
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Additional Details (Optional)</label>
+                            <textarea name="description" rows="3" 
+                                      class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-[#6C5CE7] focus:border-transparent"
+                                      placeholder="Please provide any additional information..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex gap-3">
+                        <button type="button" onclick="closeReportModal()" 
+                                class="flex-1 px-4 py-2 border rounded-lg text-gray-600 hover:bg-gray-50">
+                            Cancel
+                        </button>
+                        <button type="submit" 
+                                class="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                            Submit Report
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openReportModal() {
+            document.getElementById('reportModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+
+        function closeReportModal() {
+            document.getElementById('reportModal').classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('reportModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeReportModal();
+            }
+        });
+
+        // Highlight selected radio option
+        document.querySelectorAll('input[name="type"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Remove highlight from all labels
+                document.querySelectorAll('input[name="type"]').forEach(r => {
+                    r.closest('label').classList.remove('border-[#6C5CE7]', 'bg-purple-50');
+                });
+                
+                // Add highlight to selected label
+                if (this.checked) {
+                    this.closest('label').classList.add('border-[#6C5CE7]', 'bg-purple-50');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

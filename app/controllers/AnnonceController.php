@@ -79,10 +79,22 @@ require_once __DIR__.'/../Models/Annonce.php';
         public function showAnnonceDetails($id) {
             $annonce = Annonce::getAnnonceById($id);
             if ($annonce['type'] === 'demand') {
-                $this->render('single-demand.view');
+                $this->render('single-demand.view', ['annonce' => $annonce]);
             } else {
                 $photos = Annonce::getAnnoncePhotos($id);
-                $this->render('single-offer.view');
+                $this->render('single-offer.view', ['annonce' => $annonce, 'photos' => $photos]);
             }
+        }
+
+        public function reportAnnonce() {
+            $annonce_id = htmlspecialchars($_POST['annonce_id'] ?? null);
+            $user_id = htmlspecialchars($_POST['user_id'] ?? null);
+            $description = htmlspecialchars($_POST['description'] ?? null);
+            $type = htmlspecialchars($_POST['type'] ?? null);
+
+            $report = new Report($annonce_id, $user_id, $description, $type);
+            $report->addReport();
+            header('Location: /annonces');
+            exit;
         }
 }

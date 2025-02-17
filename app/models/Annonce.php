@@ -74,7 +74,7 @@ class Annonce {
     public static function getAnnonceById($id) {
         try {
             $db = Database::getinstance()->getconn();
-            $query = "SELECT * FROM annonces WHERE id = ?";
+            $query = "SELECT a.*, u.name FROM annonces a JOIN users u ON a.user_id = u.id WHERE a.id = ?";
             $stmt = $db->prepare($query);
             $stmt->execute([$id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);

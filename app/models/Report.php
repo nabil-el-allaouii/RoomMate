@@ -38,12 +38,12 @@ class Report {
         }
     }
     
-    public function addReport($data)
+    public function addReport()
     {
         try {
-            $query = "INSERT INTO reports (user_id, description) VALUES (?, ?)";
+            $query = "INSERT INTO reports (annonce_id, user_id, description, type) VALUES (:annonce_id, :user_id, :description, :type)";
             $stmt = $this->conn->prepare($query);
-            $stmt->execute($data);
+            $stmt->execute(['annonce_id' => $this->annonce_id, 'user_id' => $this->user_id, 'description' => $this->description, 'type' => $this->type]);
             return true;
         } catch (PDOException $e) {
             die($e->getMessage());
