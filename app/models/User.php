@@ -89,6 +89,7 @@ class User
         } catch (PDOException $e) {
             die( 'error getting all users: ' . $e->getMessage());
         }
+    }
 
     public function verifyToken($token, $userId)
     {
@@ -119,4 +120,17 @@ class User
         }
 
     }
+
+    public function deleteUser($id) {
+        try {
+            $query = "DELETE FROM users WHERE id = ?";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([$id]);
+            return true;    
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    
+
 }

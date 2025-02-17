@@ -21,7 +21,7 @@
             <!-- Left Content -->
             <div class="col-span-2">
                 <h1 class="text-4xl font-bold text-gray-900 mb-2">Demande residential home appartement</h1>
-                <p class="text-gray-500 mb-8">12 November 2021</p>
+                <p class="text-gray-500 mb-8"><?php echo $demand['created_at']; ?></p>
 
                 <p class="text-gray-600 leading-relaxed mb-8">
                     Situé dans un quartier populaire de la médina, le riad Dar Mata vous fera vivre une vraie expérience
