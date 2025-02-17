@@ -44,10 +44,11 @@ class User
             echo "Error: " . $e->getMessage();
         }
     }
-    
 
 
-    public function banUser($id) {
+
+    public function banUser($id)
+    {
         try {
             $query = "UPDATE users SET status = 'banned' WHERE id = ?";
             $stmt = $this->conn->prepare($query);
@@ -58,7 +59,8 @@ class User
         }
     }
 
-    public function unbanUser($id) {
+    public function unbanUser($id)
+    {
         try {
             $query = "UPDATE users SET status = 'active' WHERE id = ?";
             $stmt = $this->conn->prepare($query);
@@ -69,25 +71,27 @@ class User
         }
     }
 
-    public function getUserByEmail($email) {
+    public function getUserByEmail($email)
+    {
         try {
             $query = "SELECT * FROM users WHERE email = ?";
             $stmt = $this->conn->prepare($query);
             $stmt->execute([$email]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die($e->getMessage());  
+            die($e->getMessage());
         }
     }
 
-    public function getAllUsers() {
+    public function getAllUsers()
+    {
         try {
             $sql = "SELECT * FROM users WHERE role = 'user'";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die( 'error getting all users: ' . $e->getMessage());
+            die('error getting all users: ' . $e->getMessage());
         }
     }
 
@@ -118,7 +122,6 @@ class User
         } catch (PDOException $e) {
             echo "Error " . $e->getMessage();
         }
-
     }
 
     public function deleteUser($id) {
@@ -131,6 +134,4 @@ class User
             die($e->getMessage());
         }
     }
-    
-
 }
