@@ -62,25 +62,24 @@
             <!-- Messages Area -->
             <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
                 <?php foreach ($conversations as $conversation) : ?>
-                <div
-                    class="flex items-start gap-2 <?= $conversation['sender_id'] == $_SESSION['user_id'] ? 'justify-end' : 'justify-start' ?>">
-                    <?php if ($conversation['sender_id'] != $_SESSION['user_id']) : ?>
-                    <?php foreach ($info as $inf) : ?>
-                    <img src="<?= $inf['photo_profil'] ?>" alt="User" class="w-8 h-8 rounded-full">
-                    <?php endforeach; ?>
-                    <?php endif; ?>
+                <?php 
+            $isSender = ($conversation['sender_id'] == $_SESSION['user_id']);
 
-                    <div
-                        class="flex flex-col <?= $conversation['sender_id'] == $_SESSION['user_id'] ? 'items-end' : 'items-start' ?>">
+        ?>
+                <div class="flex items-start gap-2 <?= $isSender ? 'justify-end' : 'justify-start' ?>">
+                    <img src="<?= "empty" ?>" alt="User" class="w-8 h-8 rounded-full">
+                    <div class="flex flex-col <?= $isSender ? 'items-end' : 'items-start' ?>">
                         <div
-                            class="<?= $conversation['sender_id'] == $_SESSION['user_id'] ? 'bg-blue-600 text-white' : 'bg-white' ?> rounded-2xl px-4 py-2 max-w-md shadow-sm">
-                            <p class="text-sm"><?= $conversation['message']; ?></p>
+                            class="<?= $isSender ? 'bg-blue-600 text-white' : 'bg-white' ?> rounded-2xl px-4 py-2 max-w-md shadow-sm">
+                            <p class="text-sm"><?= htmlspecialchars($conversation['message']); ?></p>
                         </div>
-                        <span class="text-xs text-gray-500 mt-1 px-2">10:30 AM</span>
+                        <span
+                            class="text-xs text-gray-500 mt-1 px-2"><?= date("h:i A", strtotime($conversation['created_at'])); ?></span>
                     </div>
                 </div>
                 <?php endforeach; ?>
             </div>
+
             <form action="/sendMessage" method="post">
                 <!-- Message Input -->
                 <div class="p-4 border-t bg-white">

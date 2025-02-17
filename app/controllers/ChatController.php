@@ -12,7 +12,11 @@ class ChatController extends BaseController {
     }
 
     public function startConversation($user_one, $user_two) {
-        return $this->conversation->createConversation($user_one, $user_two);
+        if(isset($_POST['sendbutton'])){
+            $user_one = $_SESSION['user_id'];
+            $user_two = $_POST['receiver_id'];
+            return $this->conversation->createConversation($user_one, $user_two);
+        }
     }
 
     public function getConversations($user_id) {

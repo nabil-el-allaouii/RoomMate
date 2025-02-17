@@ -19,7 +19,6 @@ class Conversation {
         return $stmt->fetch(PDO::FETCH_ASSOC) ? true : false;
     }
     
-    // إنشاء محادثة جديدة
     public function createConversation($user_one, $user_two) {
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['chatbtn'])) {
             if ($this->isConversationExists($user_one, $user_two)) {
@@ -29,7 +28,7 @@ class Conversation {
             $stmt = $this->db->prepare("INSERT INTO conversations (user_one, user_two) VALUES (:user_one, :user_two)");
             $stmt->execute(['user_one' => $user_one, 'user_two' => $user_two]);
             
-            return $this->db->lastInsertId(); // إرجاع ID المحادثة الجديدة
+            return $this->db->lastInsertId();
         }
     }
     
