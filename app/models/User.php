@@ -98,4 +98,16 @@ class User
         $users = $resul->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
+
+    public function banUser($id) {
+        $query = "UPDATE users SET status = 'banned' WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$id]);
+    }
+
+    public function unbanUser($id) {
+        $query = "UPDATE users SET status = 'active' WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$id]);
+    }
 }

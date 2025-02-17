@@ -87,14 +87,17 @@ require_once __DIR__.'/../Models/Annonce.php';
         }
 
         public function reportAnnonce() {
-            $annonce_id = htmlspecialchars($_POST['annonce_id'] ?? null);
-            $user_id = htmlspecialchars($_POST['user_id'] ?? null);
-            $description = htmlspecialchars($_POST['description'] ?? null);
-            $type = htmlspecialchars($_POST['type'] ?? null);
+            $annonce_id = htmlspecialchars($_POST['annonce_id']);
+            $reporter_id = htmlspecialchars($_POST['reporter_id']);
+            $reported_id = htmlspecialchars($_POST['reported_id']);
+            $description = htmlspecialchars($_POST['description']) ?? '';
+            $type = htmlspecialchars($_POST['type']);
 
-            $report = new Report($annonce_id, $user_id, $description, $type);
+            $report = new Report();
+            $report->setReport($annonce_id, $reporter_id, $reported_id, $description, $type);
+
             $report->addReport();
-            header('Location: /annonces');
+            header('Location: /matching');
             exit;
         }
 }

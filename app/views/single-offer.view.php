@@ -185,7 +185,8 @@
             <div class="max-h-[calc(100vh-8rem)] overflow-y-auto">
                 <form action="/annonce/<?php echo $annonce['id']; ?>" method="POST" class="p-6">
                     <input type="hidden" name="annonce_id" value="<?php echo $annonce['id']; ?>">
-                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                    <input type="hidden" name="reporter_id" value="<?php echo $_SESSION['user_id']; ?>">
+                    <input type="hidden" name="reported_id" value="<?php echo $annonce['user_id']; ?>">
                     
                     <div class="space-y-4">
                         <p class="text-gray-600 mb-4">Please select a reason for reporting this listing:</p>
