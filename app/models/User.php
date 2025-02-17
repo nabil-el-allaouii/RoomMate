@@ -45,57 +45,32 @@ class User
         }
     }
 
-    // public function getStatistics()
-    // {
-    //     $statistics = [];
-
-    //     // Total number of users
-    //     $query = $this->conn->prepare("SELECT COUNT(*) AS total_users FROM utilisateurs");
-    //     $query->execute();
-    //     $statistics['total_users'] = $query->fetch(PDO::FETCH_ASSOC)['total_users'];
-
-    //     // Total number of published projects
-    //     $query = $this->conn->prepare("SELECT COUNT(*) AS total_projects FROM projets");
-    //     $query->execute();
-    //     $statistics['total_projects'] = $query->fetch(PDO::FETCH_ASSOC)['total_projects'];
-
-    //     // Total number of freelancers
-    //     $query = $this->conn->prepare("SELECT COUNT(*) AS total_freelancers FROM utilisateurs WHERE role = '3'");
-    //     $query->execute();
-    //     $statistics['total_freelancers'] = $query->fetch(PDO::FETCH_ASSOC)['total_freelancers'];
-
-    //     // Number of ongoing offers (status = 2)
-    //     $query = $this->conn->prepare("SELECT COUNT(*) AS ongoing_offers FROM offres WHERE status = 2");
-    //     $query->execute();
-    //     $statistics['ongoing_offers'] = $query->fetch(PDO::FETCH_ASSOC)['ongoing_offers'];
-
-    //     return $statistics;
-    // }
-
-    public function getAllUsers($filter, $userToSearch = '')
+    public function verifyToken($token, $userId)
     {
-
-
-
-        $query = "SELECT * FROM utilisateurs WHERE role != 1"; // by default we show all users except admins
-
-        // add filter to query
-        if ($filter == 'clients') {
-            $query .= " AND role = 2";
-        } elseif ($filter == 'freelancers') {
-            $query .= " AND role = 3";
+        try {
+            $verify = $this->conn->prepare("UPDATE users SET token = ? WHERE id = ?");
+            $verify->execute([$token, $userId]);
+            return self::getEmail($userId);
+        } catch (PDOException $e) {
+            echo "Error " . $e->getMessage();
         }
+    }
 
-        // add search condition to query
-        if ($userToSearch) {
-            $query .= " AND nom_utilisateur LIKE ?";
+    public function getEmail($id)
+    {
+        $email = $this->conn->prepare("SELECT email from users where id = ?");
+        $email->execute([$id]);
+        $result = $email->fetch(PDO::FETCH_ASSOC);
+        return $result ? $result['email'] : null;
+    }
+    public function GetVerified($token, $id)
+    {
+        try {
+            $Verified = $this->conn->prepare("UPDATE users set status = 'active' where token = ? and id = ?");
+            $Verified->execute([$token, $id]);
+            return true;
+        } catch (PDOException $e) {
+            echo "Error " . $e->getMessage();
         }
-
-        $resul = $this->conn->prepare($query);
-        $resul->execute($userToSearch ? ["%$userToSearch%"] : []);
-
-        // Fetch and return results
-        $users = $resul->fetchAll(PDO::FETCH_ASSOC);
-        return $users;
     }
 }
