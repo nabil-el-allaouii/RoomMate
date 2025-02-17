@@ -43,5 +43,14 @@ class AdminController extends BaseController {
     }
     header('Location: /admin/reports');
     exit();
-   }   
+   }
+
+   
+   public function resetPassword() {
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
+    $this->AdminModel->resetPassword($email, $password);
+    header('Location: /admin/reset_password');
+    exit();
+   }
 }

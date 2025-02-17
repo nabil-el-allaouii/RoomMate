@@ -18,7 +18,7 @@ class Mailer {
         $this->mail = new PHPMailer(true);
     }
 
-    public function sendEmail($to, $subject = 'test', $body = 'test') {
+    public function sendEmail($to, $subject, $body) {
         try {
             // Server settings
             $this->mail->isSMTP();

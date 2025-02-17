@@ -1,13 +1,16 @@
 <?php
 require_once(__DIR__ . '/../models/User.php');
+require_once(__DIR__ . '/../models/Admin.php');
 class AuthController extends BaseController
 {
 
     private $UserModel;
+    private $AdminModel;
     public function __construct()
     {
 
         $this->UserModel = new User();
+        $this->AdminModel = new Admin();
     }
 
     public function showRegister()
@@ -79,5 +82,15 @@ class AuthController extends BaseController
             exit;
         }
         //   }
+    }
+
+    public function forgotPassword() {
+        $email = htmlspecialchars($_POST['email']);
+        $user = $this->UserModel->getUserByEmail($email);
+        if ($user) {
+          $this->AdminModel->forgotPassword($email);
+        }
+        header('Location: /login');
+        exit();
     }
 }
