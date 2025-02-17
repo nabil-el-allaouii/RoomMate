@@ -1,6 +1,6 @@
 <?php
 // Include Composer's autoloader
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 
 
@@ -22,8 +22,8 @@ class Mailer {
             $this->mail->isSMTP();
             $this->mail->Host       = 'smtp.gmail.com';
             $this->mail->SMTPAuth   = true;
-            $this->mail->Username   = 'maileryoucode@gmail.com';
-            $this->mail->Password   = ''; //this should be the app password
+            $this->mail->Username   = 'test';
+            $this->mail->Password   = 'pass'; //this should be the app password
             $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $this->mail->Port       = 587;
 

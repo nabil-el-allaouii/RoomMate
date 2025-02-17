@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . '/../models/User.php');
+require_once "../core/Mailer.php";
 class AuthController extends BaseController
 {
 
@@ -8,6 +9,9 @@ class AuthController extends BaseController
     {
 
         $this->UserModel = new User();
+    }
+    public function showVerify(){
+        $this->render('/verify');
     }
 
     public function showRegister()
@@ -29,10 +33,25 @@ class AuthController extends BaseController
                 $email = $_POST['email'];
                 $password = $_POST['password'];
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $verifyToken = md5(rand());
+                $body = "
+                Hello,
+                
+                Thank you for signing up. Please use the verification code below to verify your email:
+                
+                Verification Code: **$verifyToken**
+                
+                Or click the link below to verify your email:";
 
                 $user = [$name, $hashed_password, $email];
 
                 $lastInsertedId = $this->UserModel->register($user);
+                if($lastInsertedId){
+                    $Attach = $this->UserModel->verifyToken($verifyToken , $lastInsertedId);
+                    $send = new Mailer;
+                    $send->sendEmail($Attach , "Verify Your Email", $body);
+                    header("location: /verify/{$lastInsertedId}");
+                }
                 exit;
             }
         }
@@ -61,6 +80,16 @@ class AuthController extends BaseController
                     }
                 }
              }
+        }
+    }
+
+    public function handleVerify($id){
+        if($_SERVER["REQUEST_METHOD"] === "POST"){
+            $Verify = $_POST["verification"];
+            $GetVerified = $this->UserModel->GetVerified($Verify , $id);
+            if($GetVerified){
+                header("location: /profile");
+            }
         }
     }
 
