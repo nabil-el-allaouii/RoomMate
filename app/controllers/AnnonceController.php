@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__.'/../Models/Annonce.php';   
 
-    class AnnonceController {
+    class AnnonceController extends BaseController {
         public function addAnnonce() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $type = $_POST['type'] ?? '';
@@ -74,7 +74,30 @@ require_once __DIR__.'/../Models/Annonce.php';
                     }
                 }
             
-    }
+            }
+
+        public function showAnnonceDetails($id) {
+            $annonce = Annonce::getAnnonceById($id);
+            if ($annonce['type'] === 'demand') {
+                $this->render('single-demand.view', ['annonce' => $annonce]);
+            } else {
+                $photos = Annonce::getAnnoncePhotos($id);
+                $this->render('single-offer.view', ['annonce' => $annonce, 'photos' => $photos]);
+            }
+        }
+
+        public function reportAnnonce() {
+            $annonce_id = htmlspecialchars($_POST['annonce_id']);
+            $reporter_id = htmlspecialchars($_POST['reporter_id']);
+            $reported_id = htmlspecialchars($_POST['reported_id']);
+            $description = htmlspecialchars($_POST['description']) ?? '';
+            $type = htmlspecialchars($_POST['type']);
+
+            $report = new Report();
+            $report->setReport($annonce_id, $reporter_id, $reported_id, $description, $type);
+
+            $report->addReport();
+            header('Location: /matching');
+            exit;
+        }
 }
-     
-?>

@@ -21,6 +21,8 @@ CREATE TABLE details (
     origin_city VARCHAR(255) NOT NULL,
     current_city VARCHAR(255) NOT NULL,
     profile_pic VARCHAR(255) DEFAULT '/assets/profile.jpg',
+    from_date DATE NOT NULL,
+    to_date DATE NOT NULL,
     bio TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
@@ -73,13 +75,15 @@ CREATE TABLE messages (
 
 CREATE TABLE reports (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
+    reporter_id INT NOT NULL,
+    reported_id INT NOT NULL,
     annonce_id INT NOT NULL,
     type ENUM('scam', 'spam', 'violence', 'drugs', 'other') NOT NULL,
     status ENUM('pending', 'resolved') NOT NULL DEFAULT 'pending',
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (reporter_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (reported_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (annonce_id) REFERENCES annonces(id) ON DELETE CASCADE
 );
 

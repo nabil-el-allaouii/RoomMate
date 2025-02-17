@@ -1,6 +1,11 @@
 <?php
-// Include Composer's autoloader
+
+
 require __DIR__ . '/../vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 
 
 
@@ -8,7 +13,6 @@ require __DIR__ . '/../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Create a new PHPMailer instance
 class Mailer {
     private $mail;
 
@@ -20,15 +24,17 @@ class Mailer {
         try {
             // Server settings
             $this->mail->isSMTP();
-            $this->mail->Host       = 'smtp.gmail.com';
+            $this->mail->Host       = $_ENV['smtp_host'];
             $this->mail->SMTPAuth   = true;
-            $this->mail->Username   = 'test';
-            $this->mail->Password   = 'pass'; //this should be the app password
+
+            $this->mail->Username   = $_ENV['smtp_username'];
+            $this->mail->Password   = $_ENV['smtp_password'];
+
             $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $this->mail->Port       = 587;
+            $this->mail->Port       = $_ENV['smtp_port'];
 
             // Recipients   
-            $this->mail->setFrom('maileryoucode@gmail.com', 'YouCode');
+            $this->mail->setFrom($_ENV['smtp_username'], 'YouCode');
             $this->mail->addAddress($to);
 
             // Content
@@ -44,6 +50,7 @@ class Mailer {
             // echo "Email could not be sent. PHPMailer Error: {$this->mail->ErrorInfo}";
             // die("Email could not be sent. PHPMailer Error: {$this->mail->ErrorInfo}");
             return ['status' => 'error', 'message' => "Email could not be sent. PHPMailer Error: {$this->mail->ErrorInfo}"];
+            die("Email could not be sent. PHPMailer Error: {$this->mail->ErrorInfo}");
         }
     }
 }

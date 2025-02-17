@@ -1,14 +1,20 @@
 <?php
 require_once(__DIR__ . '/../models/User.php');
+
+require_once(__DIR__ . '/../models/Admin.php');
+
 require_once "../core/Mailer.php";
+
 class AuthController extends BaseController
 {
 
     private $UserModel;
+    private $AdminModel;
     public function __construct()
     {
 
         $this->UserModel = new User();
+        $this->AdminModel = new Admin();
     }
     public function showVerify(){
         $this->render('/verify');
@@ -65,20 +71,24 @@ class AuthController extends BaseController
                 $email = $_POST['email'];
                 $password = $_POST['password'];
                 $userData = [$email, $password];
-                $user = $this->UserModel->login($userData);
+                $user = $this->UserModel->login($userData) ?? [];
                 extract($user);
                 
-                if($info ){
+                if(isset($info) && $info){
                     $_SESSION['user_id'] = $info["id"];
                     $_SESSION['username'] = $info['name'];
                     $_SESSION['role'] = $info['role'];
                     $_SESSION['status'] = $info["status"];
                     if($Checked["count"] === 0){
                         header("location: /details");
+                        exit();
                     }else{
                         header("location: /recherche");
+                        exit();
                     }
                 }
+                header("location: /login");
+                exit();
              }
         }
     }
@@ -108,5 +118,15 @@ class AuthController extends BaseController
             exit;
         }
         //   }
+    }
+
+    public function forgotPassword() {
+        $email = htmlspecialchars($_POST['email']);
+        $user = $this->UserModel->getUserByEmail($email);
+        if ($user) {
+          $this->AdminModel->forgotPassword($email);
+        }
+        header('Location: /login');
+        exit();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Admin {
+class Admin extends User {
 
     private $conn;
 
@@ -10,44 +10,52 @@ class Admin {
     }
 
     public function forgotPassword($email) {
-        try {
-            $sql = "SELECT * FROM users WHERE email = ?";
+
+            try {
+            $sql = "INSERT INTO reset_pass (email) VALUES (?)";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([$email]);
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($user) {
-                $sql = "INSERT INTO reset_pass (email) VALUES (?)";
-                $stmt = $this->conn->prepare($sql);
-                $stmt->execute([$email]);
-                return true;
-            }
-            return false;
+            return true;
         } catch (PDOException $e) {
-            // echo "Error: " . $e->getMessage();
-            die($e->getMessage());
+            die( 'error inserting email pass: ' . $e->getMessage());
         }
     }
 
     public function resetPassword($email, $password) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
         try {
             $sql = "UPDATE users SET password = ? WHERE email = ?";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([$password, $email]);
+           if($stmt->execute([$password, $email])){
             return true;
+           }else{
+            die( 'error updating password: ' . $e->getMessage());
+           }
         } catch (PDOException $e) {
-            die($e->getMessage());
+            die( 'error updating password: ' . $e->getMessage());
         }
     }
 
-    public function getAllUsers() {
+    public function getRequests() {
         try {
-            $sql = "SELECT * FROM users WHERE role = 'user'";
+            $sql = "SELECT * FROM reset_pass";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            die($e->getMessage());
+            die( 'error getting requests: ' . $e->getMessage());
         }
     }
+
+    public function deleteRequest($email) {
+        try {
+            $sql = "DELETE FROM reset_pass WHERE email = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$email]);
+            return true;
+        } catch (PDOException $e) {
+            die( 'error deleting request: ' . $e->getMessage());
+        }
+    }
+
 }

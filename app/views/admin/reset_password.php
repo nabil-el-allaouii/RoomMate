@@ -49,29 +49,33 @@
                         </thead>
                         <tbody class="divide-y">
 
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-8 h-8 rounded-full bg-[#6366F1] flex items-center justify-center text-white">
-                                            S
+                            <?php foreach ($requests as $request) : ?>
+
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4">
+                                    <form action="/admin/reset_password" method="post">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-[#6366F1] flex items-center justify-center text-white">
+                                                <?php echo substr($request['email'], 0, 1); ?>
+                                            </div>
+                                            <span><?php echo $request['email']; ?></span>
                                         </div>
-                                        <span>sarah.smith@example.com</span>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-gray-500">2024-03-15 12:15</td>
-                                <td class="px-6 py-4">
-                                    <input type="text" 
-                                           placeholder="Enter new password" 
-                                           
-                                           class="w-full px-3 py-1 border rounded">
-                                </td>
-                                <td class="px-6 py-4">
-                                    <button disabled class="bg-gray-100 text-gray-400 px-4 py-1 rounded cursor-not-allowed">
-                                        Reset
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
+                                    </td>
+                                    <td class="px-6 py-4 text-gray-500"><?php echo $request['created_at']; ?></td>
+                                    <td class="px-6 py-4">
+                                        <input type="text" 
+                                        placeholder="Enter new password" 
+                                        name="password"
+                                        class="w-full px-3 py-1 border rounded">
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <input type="hidden" name="email" value="<?php echo $request['email']; ?>">
+                                        <button type="submit" disabled class="bg-gray-100 text-gray-400 px-4 py-1 rounded cursor-not-allowed">Reset</button>
+                                    </td>
+                                    </form>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
                     </table>
                 </div>
             </div>
