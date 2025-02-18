@@ -17,6 +17,15 @@
 
                 <!-- Navigation Icons -->
                 <div class="flex items-center gap-6">
+                    <a href="/recherche">
+                        <button class="text-gray-600 hover:text-[#6C5CE7]">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </a>
+
                     <button class="text-gray-600 hover:text-[#6C5CE7] relative group">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,12 +42,12 @@
                         </svg>
                     </button>
 
-                    <button class="text-gray-600 hover:text-[#6C5CE7]">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                        </svg>
-                    </button>
+                    <a href="/addAnnonce"><button class="text-gray-600 hover:text-[#6C5CE7]">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </button></a>
 
                     <!-- Profile/Settings Dropdown -->
                     <div class="relative">
@@ -54,7 +63,7 @@
                         <!-- Dropdown Menu -->
                         <div id="profileDropdown"
                             class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 border border-gray-200">
-                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
+                            <a href="/logout" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
                         </div>
                     </div>
                 </div>

@@ -12,11 +12,21 @@ class AuthController extends BaseController
     private $AdminModel;
     public function __construct()
     {
+        if (isset($_SESSION['user_id']) && !str_contains($_SERVER['REQUEST_URI'], 'logout')) {
+            if ($_SESSION['role'] === 'admin') {
+                header('Location: /admin/reports');
+                exit();
+            } else {
+                header('Location: /profile');
+                exit();
+            }
+        }
 
         $this->UserModel = new User();
         $this->AdminModel = new Admin();
     }
-    public function showVerify(){
+    public function showVerify()
+    {
         $this->render('/verify');
     }
 
@@ -52,10 +62,10 @@ class AuthController extends BaseController
                 $user = [$name, $hashed_password, $email];
 
                 $lastInsertedId = $this->UserModel->register($user);
-                if($lastInsertedId){
-                    $Attach = $this->UserModel->verifyToken($verifyToken , $lastInsertedId);
+                if ($lastInsertedId) {
+                    $Attach = $this->UserModel->verifyToken($verifyToken, $lastInsertedId);
                     $send = new Mailer;
-                    $send->sendEmail($Attach , "Verify Your Email", $body);
+                    $send->sendEmail($Attach, "Verify Your Email", $body);
                     header("location: /verify/{$lastInsertedId}");
                 }
                 exit;
@@ -73,31 +83,36 @@ class AuthController extends BaseController
                 $userData = [$email, $password];
                 $user = $this->UserModel->login($userData) ?? [];
                 extract($user);
-                
-                if(isset($info) && $info){
+
+                if (isset($info) && $info) {
                     $_SESSION['user_id'] = $info["id"];
                     $_SESSION['username'] = $info['name'];
                     $_SESSION['role'] = $info['role'];
                     $_SESSION['status'] = $info["status"];
-                    if($Checked["count"] === 0){
+                    if ($Checked["count"] === 0 && $_SESSION['role'] !== "admin") {
                         header("location: /details");
                         exit();
-                    }else{
+                    } elseif($_SESSION['role'] === "admin"){
+                        header("location: /admin/reports");
+                        exit();
+                    }
+                    else {
                         header("location: /recherche");
                         exit();
                     }
                 }
                 header("location: /login");
                 exit();
-             }
+            }
         }
     }
 
-    public function handleVerify($id){
-        if($_SERVER["REQUEST_METHOD"] === "POST"){
+    public function handleVerify($id)
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $Verify = $_POST["verification"];
-            $GetVerified = $this->UserModel->GetVerified($Verify , $id);
-            if($GetVerified){
+            $GetVerified = $this->UserModel->GetVerified($Verify, $id);
+            if ($GetVerified) {
                 header("location: /profile");
             }
         }
@@ -107,24 +122,23 @@ class AuthController extends BaseController
     {
 
 
-        // if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["logout"])) {
-        //  var_dump($_SESSION);die();
-        if (isset($_SESSION['user_loged_in_id']) && isset($_SESSION['user_loged_in_role'])) {
-            unset($_SESSION['user_loged_in_id']);
-            unset($_SESSION['user_loged_in_role']);
+
+        if (isset($_SESSION['user_id']) && isset($_SESSION['role'])) {
+            unset($_SESSION['user_id']);
+            unset($_SESSION['role']);
             session_destroy();
 
             header("Location: /login");
             exit;
         }
-        //   }
     }
 
-    public function forgotPassword() {
+    public function forgotPassword()
+    {
         $email = htmlspecialchars($_POST['email']);
         $user = $this->UserModel->getUserByEmail($email);
         if ($user) {
-          $this->AdminModel->forgotPassword($email);
+            $this->AdminModel->forgotPassword($email);
         }
         header('Location: /login');
         exit();

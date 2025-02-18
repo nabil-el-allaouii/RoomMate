@@ -4,12 +4,22 @@ require_once __DIR__ . "/../models/Annonce.php";
 require_once __DIR__ . "/../models/Details.php";
 
 
-class MatchingController {
+class MatchingController
+{
 
-    private function calculerCompatibilite($userDetails, $annonce) {
+    public function __construct()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit();
+        }
+    }
+
+    private function calculerCompatibilite($userDetails, $annonce)
+    {
         $score = 0;
 
-        if (abs($userDetails['budget'] - $annonce['budget']) <= 100) {  
+        if (abs($userDetails['budget'] - $annonce['budget']) <= 100) {
             $score += 25;
         }
 
@@ -32,11 +42,12 @@ class MatchingController {
         }
         return $score;
     }
-    public function showMatchingResults() {
-        $user_id = $_SESSION['user_id']; 
-        
+    public function showMatchingResults()
+    {
+        $user_id = $_SESSION['user_id'];
+
         $userDetails = Details::getUserDetails($user_id);
-        
+
         if (!$userDetails) {
             echo "Utilisateur non trouve ";
             return;
@@ -51,10 +62,9 @@ class MatchingController {
                 $matchingAnnonces[] = $annonce;
             }
         }
-        usort($matchingAnnonces, function($a, $b) {
+        usort($matchingAnnonces, function ($a, $b) {
             return $b['compatibility_score'] - $a['compatibility_score'];
         });
         include __DIR__ . "/../views/matching_results.php";
     }
 }
-?>

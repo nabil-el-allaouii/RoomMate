@@ -71,9 +71,9 @@
         <!-- Navigation - made more compact -->
         <nav class="px-6 py-4 flex justify-between items-center max-w-7xl mx-auto w-full">
             <div class="text-[#6C5CE7] text-3xl font-bold">Roommate</div>
-            <button class="bg-[#6C5CE7] hover:bg-[#5a4bd4] text-white px-8 py-3 rounded-xl transition-colors">
+            <a href="/register"><button class="bg-[#6C5CE7] hover:bg-[#5a4bd4] text-white px-8 py-3 rounded-xl transition-colors">
                 Get Started
-            </button>
+            </button></a>
         </nav>
 
         <!-- Hero Section - will take remaining viewport height -->

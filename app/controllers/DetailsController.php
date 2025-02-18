@@ -1,12 +1,23 @@
 <?php
-require_once __DIR__.'/../Models/Details.php';   
+require_once __DIR__ . '/../Models/Details.php';
 
-class DetailsController extends BaseController {
-    public function Details() {
-        include __DIR__.'/../Views/details.php';
+class DetailsController extends BaseController
+{
+    public function __construct()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit();
+        }
     }
 
-    public function addDetails(){
+    public function Details()
+    {
+        include __DIR__ . '/../Views/details.php';
+    }
+
+    public function addDetails()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $bio = $_POST['bio'] ?? '';
             $current_city = $_POST['current_city'] ?? '';
@@ -29,19 +40,12 @@ class DetailsController extends BaseController {
                     $fileNameNew = uniqid('', true) . '.' . $fileExt;
                     $fileDestination = 'uploads/' . $fileNameNew;
                     move_uploaded_file($fileTmp, $fileDestination);
-                    $details = new Details($user_id,$bio,$current_city,$budget,$room_type,$origin_city,$preferences,$education_year,$fileDestination,$from_date,$to_date);
+                    $details = new Details($user_id, $bio, $current_city, $budget, $room_type, $origin_city, $preferences, $education_year, $fileDestination, $from_date, $to_date);
                     $details->ajouterDetails();
 
-                header('Location: /details');
+                    header('Location: /details');
+                }
             }
         }
     }
-    
-
 }
-
-
-
-}
-     
-?>

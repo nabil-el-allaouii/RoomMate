@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password Requests - Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white py-4 px-6 border-b">
@@ -13,8 +15,9 @@
             <div class="flex items-center gap-8">
                 <a href="/admin" class="text-[#6366F1] text-2xl font-bold">Roomate</a>
                 <span class="text-gray-500">Admin Panel</span>
+                <a href="/admin/reports" class="text-gray-500 hover:text-[#6366F1]">Reports</a>
             </div>
-            <button class="bg-[#6366F1] text-white px-6 py-2 rounded-lg">Logout</button>
+            <a href="/logout"><button class="bg-[#6366F1] text-white px-6 py-2 rounded-lg">Logout</button></a>
         </div>
     </nav>
 
@@ -30,9 +33,9 @@
                 <!-- Search and Filter -->
                 <div class="flex gap-4 mb-6 max-w-md">
                     <div class="flex-1 ">
-                        <input type="text" 
-                               placeholder="Search by email..." 
-                               class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
+                        <input type="text"
+                            placeholder="Search by email..."
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent">
                     </div>
                 </div>
 
@@ -53,20 +56,20 @@
 
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-4">
-                                    <form action="/admin/reset_password" method="post">
-                                        <div class="flex items-center gap-3">
-                                            <div class="w-8 h-8 rounded-full bg-[#6366F1] flex items-center justify-center text-white">
-                                                <?php echo substr($request['email'], 0, 1); ?>
+                                        <form action="/admin/reset_password" method="post">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-8 h-8 rounded-full bg-[#6366F1] flex items-center justify-center text-white">
+                                                    <?php echo substr($request['email'], 0, 1); ?>
+                                                </div>
+                                                <span><?php echo $request['email']; ?></span>
                                             </div>
-                                            <span><?php echo $request['email']; ?></span>
-                                        </div>
                                     </td>
                                     <td class="px-6 py-4 text-gray-500"><?php echo $request['created_at']; ?></td>
                                     <td class="px-6 py-4">
-                                        <input type="text" 
-                                        placeholder="Enter new password" 
-                                        name="password"
-                                        class="w-full px-3 py-1 border rounded">
+                                        <input type="text"
+                                            placeholder="Enter new password"
+                                            name="password"
+                                            class="w-full px-3 py-1 border rounded">
                                     </td>
                                     <td class="px-6 py-4">
                                         <input type="hidden" name="email" value="<?php echo $request['email']; ?>">
@@ -75,7 +78,7 @@
                                     </form>
                                 </tr>
                             <?php endforeach; ?>
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -97,4 +100,5 @@
         });
     </script>
 </body>
+
 </html>
