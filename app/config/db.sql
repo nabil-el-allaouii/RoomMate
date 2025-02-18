@@ -9,6 +9,7 @@ CREATE TABLE users (
     role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
     status ENUM('active', 'banned', 'pending') NOT NULL DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    token VARCHAR(255)
 );
 
 CREATE TABLE details (
